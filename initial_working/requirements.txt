@@ -1,2 +1,10 @@
 fastapi
-uvicorn
+uvicorn[standard]
+motor
+python-dotenv
+pydantic
+argon2-cffi
+PyJWT
+python-slugify
+pymongo
+pydantic[email]

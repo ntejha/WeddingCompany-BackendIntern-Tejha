@@ -119,3 +119,38 @@ async def root():
 ```
 
 
+#### Motor
+
+We are going to use Motor for asynchronous MongoDB driver for python, which is built on top of pymongo and integrated with python's asyncio.
+
+#### Docker 
+
+As mongo is not supported in fedora, we are going to install it through docker and connect it for now.
+
+```
+docker run -d \
+  --name mongo \
+  -p 27017:27017 \
+  -e MONGO_INITDB_ROOT_USERNAME=root \
+  -e MONGO_INITDB_ROOT_PASSWORD=pass123 \
+  mongo:6
+
+docker ps
+
+docker exec -it mongo mongosh -u root -p pass123
+```
+
+for verification, inside the shell : 
+
+```
+use master_db
+db.test.insertOne({hello: "world"})
+db.test.find()
+```
+
+Also make sure u add the url to the .env
+
+```
+MONGO_URI=mongodb://root:pass123@localhost:27017
+MASTER_DB=master_db
+```
